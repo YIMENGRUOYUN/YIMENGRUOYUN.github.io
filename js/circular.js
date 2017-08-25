@@ -1,14 +1,14 @@
-var canvasCircle = (function (w, d) {
+    var canvasCircle = (function (w, d) {
         function Circle(option) {
             this.default = {
-                "canvasWrap": null,
-                "diameter": 150,
-                "lineWidth": 10,
-                "baseColor": "#eaeaea",
-                "maskColor": ["#ff0", "#f00"], 
-                "percentage": 50,
-                "textColor": "#000",
-                "fontSize": "1em",
+                "canvasWrap": null,//【必填】包裹圆环的div盒子
+                "diameter": 150,//【圆的直径】
+                "lineWidth": 10,//【圆环大小 】
+                "baseColor": "#eaeaea",//【圆的底层颜色】
+                "maskColor": ["#ff0", "#f00"], //【圆的遮罩颜色】可以为一个颜色#f00,也可以为数组【但是接收两个颜色】
+                "percentage": 50,//【百分比】
+                "textColor": "#000",//【字体颜色】
+                "fontSize": "1em",//【字体大小】
                 "callback": function () {
                     console.log("执行回调");
                 }
@@ -18,15 +18,15 @@ var canvasCircle = (function (w, d) {
         }
 
         Circle.prototype = {
-            
+            //初始化入口
             init: function () {
                 if (!this.op.canvasWrap) {
-                    
+                    //如果没有this.op.canvasWrap
                     throw new Error("CanvasWrap is not defined !");
                 }
                 this.createEle();
             },
-            
+            //创建元素
             createEle: function () {
                 var _this = this;
                 var eleWrap = d.querySelector(_this.op.canvasWrap);
@@ -38,7 +38,7 @@ var canvasCircle = (function (w, d) {
                 eleWrap.appendChild(_this.canvasInt);
                 this.addStyle(eleWrap, canvas1, canvas2, this.op.diameter, this.op.diameter);
             },
-            
+            //添加样式
             addStyle: function (wrap, eleInt, eleOut, w, h) {
                 var ctx1 = eleInt.getContext("2d");
                 var ctx2 = eleOut.getContext("2d");
@@ -49,7 +49,7 @@ var canvasCircle = (function (w, d) {
                 eleInt.style.cssText = eleOut.style.cssText = "position:absolute;left:0;top:0;transform:rotate(-90deg)";
                 _this.drawCanvas(ctx1, ctx2);
             },
-            
+            //填充canvas
             drawCanvas: function (ctx1, ctx2) {
                 var _this = this;
                 var o = _this.op;
@@ -65,7 +65,7 @@ var canvasCircle = (function (w, d) {
                 ctx2.strokeStyle = o.maskColor;
                 _this.animateCanvas(ctx2, o.percentage);
             },
-            
+            //执行canvas动画
             animateCanvas: function (ctx2, percent) {
                 var timer = null;
                 var angle = 0;
@@ -108,7 +108,7 @@ var canvasCircle = (function (w, d) {
                     ctx2.restore();
                 })();
             },
-            
+            //合并参数
             extend: function (defaults, option) {
                 for (i in option) {
                     defaults[i] = option[i];
@@ -130,19 +130,19 @@ var canvasCircle = (function (w, d) {
     })
     new canvasCircle({
         "canvasWrap": "#js",
-        "percentage": 70,
+        "percentage": 80,
         "lineWidth": 10,
         "maskColor": ["orange", "green"]
     })
     new canvasCircle({
         "canvasWrap": "#jquery",
-        "percentage": 70,
+        "percentage": 80,
         "lineWidth": 10,
         "maskColor": ["green", "yellow"]
     })
     new canvasCircle({
         "canvasWrap": "#bootstrap",
-        "percentage": 70,
+        "percentage": 80,
         "lineWidth": 10,
         "maskColor": ["purple", "blue"]
     })
