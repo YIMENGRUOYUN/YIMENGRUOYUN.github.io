@@ -271,6 +271,9 @@
 	.container .lxw-b{
 		margin-top: -0.5em;
 	}
+	.container .col-sm-4 .icon{
+		margin-top: 15px;
+	}
 	.container .col-sm-4 p{
 		margin-top: 0.3em;
 	}
