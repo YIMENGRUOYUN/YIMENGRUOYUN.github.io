@@ -139,8 +139,11 @@
 	-webkit-transform:rotate(360deg)
 }
 @media (max-width: 768px){
+	#content1 .gyw-n table{
+		margin-left: -10%;
+	}
 	#content1 .gyw-n table tr td{
-		font-size:1.3em;
+		font-size:1em;
 	}
 	#content1 .gyw-n table tr td img{
 		display: none;
